@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js表单验证</title>
+	<style type="text/css">
+	body{
+		font:14px/28px "微软雅黑";
+	 }
+	 .contact{
+	 	width: 700px;
+	 	height: auto;
+	 	background:#f6f6f6;
+	 	margin: 40px auto;
+	 	padding: 10px;
+	  }
+	  .contact ul{
+	  	width: 650px;
+	  	margin: 0 auto;
+	   }
+	   .contact ul li {
+	   	border-bottom: 1px solid #dfdfdf;
+	   	list-style: none;
+	   	padding: 12px;
+	    }
+	    .contact ul li label{
+	    	width: 120px;
+	    	float: left;
+	    	display: inline-block;
+	     }
+	     .contact ul li input[type=text],.contact ul li input[type=password]{
+	     		width: 220px;
+	     		height: 25px;
+	     		border:1px solid #aaa;
+	     		border-radius: 5px;
+	     		padding: 3px 8px;
+	      }
+	      .contact ul li input[type=text],.contact ul li input[type=password]{
+	      		transition: padding 0.25s;
+	       }
+	       .contact ul li input:focus{
+	       	padding-right:70px;
+	        }
+	        .btn{
+	        	position: relative;
+	        	left: 300px;
+	         }
+	         .tips{
+	         	color: rgba(0,0,0,0.5);
+	         	padding-left:10px;
+	          }
+	          .tips_false, tips_true{
+	          	padding-left: 10px;
+	           }
+	        .tips_false{
+	        	color: red;
+	         }
+	         .tips_true{
+	         	color: green;
+	          }
+	</style>
+	<script type="text/javascript">
+	function checkna(){ 
+		na=form1.yourname.value;
+		if (na.length<4 || na.length>20) { 
+			divname.innerHTML='<font class="tips_false">长度为4-20位字符</font>';
+		}else{
+			divname.innerHTML='<font class="tips_true">输入正确</font>';
+		 }
+
+	}
+	function checkemail(){ 
+		apos=form1.youremail.value.indexOf("@");
+		dotops=form1.youremail.value.lastIndexOf(".");
+
+		if (apos<1 || dotops-apos<2) { 
+			divemail.innerHTML='<font class="tips_false">邮箱格式错误</font>';
+		}else{
+			divemail.innerHTML='<font class="tips_true">输入正确</font>';
+		 }
+
+	}
+	</script>
+</head>
+<body>
+	<div class="contact">
+		<form name="form1" method="post" action="1.php">
+			<ul>
+				<li>
+					<label>账号:</label><input type="text" name="yourname"  placeholder="请输入用户名" onblur="checkna()"><span class="tips" id="divname">长度为4-20位字符</span>
+				</li>
+				<li>
+					<label>密码:</label><input type="password" name="youepass"  placeholder="请输入密码"><span class="tips" >密码必须由数字和字母组成</span>
+				</li>
+				<li>
+					<label>确认密码:</label><input type="password" name="youepass2"  placeholder="请再次输入密码"><span class="tips" >两次密码需要相同</span>
+				</li>
+				<li>
+					<label>电子邮箱:</label><input type="text" name="youremail"  placeholder="请输入你的邮箱" onblur="checkemail()"><span class="tips" id="divemail">请输入你的邮箱</span>
+				</li>
+				<b class="btn"><input type="submit" value="提交">
+				<input type="reset" value="取消"></b>
+
+			</ul>
+		</form>
+	</div>
+	<!--
+	7号开新班 
+	每天晚上8点30到10点40  高效的学习  
+	每一期班 两月半月到三个月
+	120-150节课
+	在线直播 附带全套的视频(预习和复习)+全套的笔记+全套的代码 
+	有问题找老师微信号18910356216;学神IT-讲师-徐老师  664644713 一对一教学
+	加入vipQQ群 提供良好的学习氛围
+	终身免费重学 可以跟多个班
+	课程升级免费学  node.js  h5生成App
+
+
+	北上广深 线下  11980 
+
+	 在线教育:2980 终身免费重学
+	 开班之后 价格会上涨3680
+
+	 2015年的前端开发工程师平均薪资  北京10850
+	 7000-8000
+	 3000-4000  6000-7000 10000
+
+	 读书 学霸  
+
+	 零基础 学完 6000-8000
+	 有一到两年的经验  8000-15000
+
+	 学完之后推荐就业   和全国各大城市的就业单位都有合作
+	 大学生
+	 100 
+
+	 教学质量有问题有任何问题 七天物流有退款的
+	 腾讯交易有保障
+	 加入vipQQ群 想老学员了解教学质量
+	 终身免费重学
+
+	 大学生或者特困生
+	 原价分期  1500  1480 
+	 先交1500 写个月补交1480 
+-->
+
+
+
+</body>
+</html>
