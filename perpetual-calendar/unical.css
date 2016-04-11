@@ -1,24 +1,35 @@
 body{
-    margin:0;
+    font-family:Helvetica;
+    background:white;
+    text-align:center;
+    background:url(./image/body.png) repeat-x;
+}
+table
+{
+    border-collapse:separate;
+    border:1px solid #9DABCE;
+    border-width:0px 0px 1px 1px;
+    margin:10px auto;
+    font-size:20px;
 }
 .aorange {
-    font-size: 16px;
+    /*font-size: 16px;*/
     color: #ff5f07;
-    font-family: "ºÚÌå",serif;
-    font-weight: bold;
+    /*font-family: "ºÚÌå",serif;*/
+    /*font-weight: bold;*/
 }
-.agreen {
-    font-size: 16px;
+/*.agreen {*/
+    /*font-size: 16px;*/
     /*color: #55e8df;*/
-    font-weight: bold;
-}
+    /*font-weight: bold;*/
+/*}*/
 
-.one {
-    font-family: "ºÚÌå",serif;
-    font-size: 16px;
+/*.one {*/
+    /*font-family: "ºÚÌå",serif;*/
+    /*font-size: 16px;*/
     /*color: #000;*/
-    font-weight: normal;
-}
+    /*font-weight: normal;*/
+/*}*/
 
 .spc {
     color:#ff5f07;
@@ -32,28 +43,19 @@ div,select,p {
 }
 
 div#festival {
-    color: #d8f6f8;
-    width: 130px;
-    padding: 2px;
-    margin-top: 50px;
-    background-color: #0978a6;
+    /*color: #d8f6f8;*/
+    width: 163px;
+    height: 215px;
+    /*background-color: #0978a6;*/
 }
 div#datedetail {
-    width: 130px;
-    border: 0;
-    padding: 2px;
-    margin: 0;
-    background-color:#e8f5f9;
-    text-align:right;
+    width: 163px;
+    height: 215px;
+    /*background-color:#e8f5f9;*/
+    /*text-align:right;*/
 }
-div#datedetail span {
-    color: #23460f;
-}
+
 div#detail {
-    /*position: absolute;*/
-    /*visibility: hidden;*/
-    /*margin: 0;*/
-    /*border:1px solid #a6a8ab;*/
     float: left;
 }
 
@@ -76,22 +78,58 @@ div#calendar {
     border-top:0;
     height:auto;
 }
-#calendarhead {
-    float: left;
-    color: #fafbfb;
-    border:0;
-    padding:0;
-    margin:0;
-    background-color: #0978a6;
-}
-
-#calendarhead tr td {
-    width:70px;
-    font-weight:bold;
-    font-family:"ºÚÌå",serif;
+/*#calendarhead {*/
+    /*float: left;*/
+    /*color: #fafbfb;*/
+    /*border:0;*/
+    /*padding:0;*/
+    /*margin:0;*/
+    /*background-color: #0978a6;*/
+/*}*/
+table
+{
+    /*float: left;*/
+    border-collapse:collapse;
+    border:1px solid #9DABCE;
+    border-width:0px 0px 1px 1px;
+    margin:10px auto;
     font-size:20px;
-    padding:1px;
+    table-layout:fixed;
+    width:527px;
 }
+td, th
+{
+    /*float:left;*/
+    width:61px;
+    height:41px;
+    text-align:center;
+    vertical-align:middle;
+    background-image:url(./image/cells.png);
+    color:#444;
+    cursor:pointer;
+    /*position:relative;*/
+}
+th
+{
+    /*height:30px;*/
+    font-weight:bold;
+    /*font-size:14px;*/
+}
+.two
+{
+    font-size:6px;
+    width:61px;
+    height:20px;
+    font-family:Helvetica;
+    /*word-wrap:break-word;*/
+}
+/*#calendarhead tr td {*/
+    /*width:70px;*/
+    /*font-weight:bold;*/
+    /*font-family:"ºÚÌå",serif;*/
+    /*font-size:20px;*/
+    /*padding:1px;*/
+/*}*/
 
 div#panel {
     margin:0;
@@ -114,18 +152,18 @@ div#panel div {
     margin:0;
     float: left;
 }
-#week tr td {
-    padding:1px;
-    margin:0;
-    width:70px;
-    border-bottom: 1px solid #efefef;
-    border-left: 1px solid #efefef;
-    cursor:pointer;
-}
+/*#week tr td {*/
+    /*padding:1px;*/
+    /*margin:0;*/
+    /*width:70px;*/
+    /*border-bottom: 1px solid #efefef;*/
+    /*border-left: 1px solid #efefef;*/
+    /*cursor:pointer;*/
+/*}*/
 
-.tr2 td {
-    background-color: #e8f5f9;
-}
+/*.tr2 td {*/
+    /*background-color: #e8f5f9;*/
+/*}*/
 .prev-next{
     width: 20px;
     height: auto;
@@ -143,4 +181,7 @@ div#panel div {
     /*display: block;*/
     height:50%;
     margin-top: 100px;
+}
+.datedetail1{
+    padding-top: 20px;
 }

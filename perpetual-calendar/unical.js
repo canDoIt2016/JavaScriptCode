@@ -438,7 +438,7 @@ function cDay(d){
 var cld;
 //创建整个月份板的显示
 function drawCld(SY,SM) {
-    var i,sD,s,size;
+    var i,sD,s,size,s1;
     cld = new calendar(SY,SM);
     document.getElementById("gz").innerHTML = '&nbsp;&nbsp;农历'
         + cyclical(SY-1900+36) + '年 &nbsp;&nbsp;【'+Animals[(SY-4)%12]+'】';
@@ -447,7 +447,7 @@ function drawCld(SY,SM) {
        var sObj = document.getElementById('sd'+ i);
        var lObj = document.getElementById('ld'+ i);
         //背景清空
-        sObj.style.backgroundColor='#ffffff';
+        sObj.style.background='';
         lObj.style.background = '';
         //返回当月第一天是周几
         sD = i - cld.firstWeek;
@@ -455,10 +455,11 @@ function drawCld(SY,SM) {
             sObj.innerHTML = sD+1;
             if(cld[sD].isToday){
                 //设置今天的背景色
-                window.console.log(sD);
-                sObj.style.background = '#ffa400';
+                //window.console.log(sD);
+//                sObj.style.backgroundImage = "url(./image/cells.png)";
+                sObj.style.backgroundPosition='81px 0px';
                 //sObj.style.color="#FFFFFF";
-                lObj.style.background = '#ffa400';
+                lObj.style.backgroundPosition = '81px 0px';
             }
             if(cld[sD].lDay==1)
                 lObj.innerHTML = '<b>'+(cld[sD].isLeap?'闰':'')
@@ -470,6 +471,7 @@ function drawCld(SY,SM) {
             s=cld[sD].lunarFestival;
             if(s.length>0) {
                 //农历节日名称大于5个字截去
+                s1=s;
                 if(s.length>7) s = s.substr(0, 5)+'…';
                 s = s.fontcolor('#ff5f07');
             }
@@ -478,6 +480,8 @@ function drawCld(SY,SM) {
                 if(s.length>0) {
                     //阳历节日名称截去
                     size = (s.charCodeAt(0)>0 && s.charCodeAt(0)<128)?9:5;
+                    //保留原来节日名称
+                    s1=s;
                     if(s.length>size+1) s = s.substr(0, size-1)+'…';
                     s = s.fontcolor('#0168ea');
                 }
@@ -486,8 +490,11 @@ function drawCld(SY,SM) {
                     if(s.length>0) s = s.fontcolor('#44d7cf');
                 }
             }
-            if(s.length>0) lObj.innerHTML = s;
-
+            if(s.length>0) {
+                //鼠标移上去会显示节日的详细信息
+                lObj.setAttribute('title',s1);
+                lObj.innerHTML = s;
+            }
         }
         else {
             sObj.innerHTML = ' ';
@@ -503,11 +510,17 @@ function changeCld() {
     m = document.getElementById("sm").selectedIndex;
     drawCld(y,m);
     //在换页时记录上一页的位置，并将上一页选择的位置作为当前页选择的位置
-    n=selectedLoc+cld.firstWeek;
-    var sObj = document.getElementById('sd'+ n);
-    var lObj = document.getElementById('ld'+ n);
-    sObj.style.backgroundColor='#33FFFF';
-    lObj.style.backgroundColor='#33FFFF';
+    if(cld[selectedLoc].isToday){
+        sObj.style.backgroundPosition='81px 0px';
+        lObj.style.backgroundPosition = '81px 0px';
+    }
+    else{
+        n=selectedLoc+cld.firstWeek;
+        var sObj = document.getElementById('sd'+ n);
+        var lObj = document.getElementById('ld'+ n);
+        sObj.style.backgroundPosition='162px 0px';
+        lObj.style.backgroundPosition='162px 0px';
+    }
 }
 
 //进行月份年份的前进后退
@@ -581,8 +594,8 @@ function mOvr(v) {
     selectedLoc=v-cld.firstWeek;
     var sD,sD1;
     if( sObj.innerHTML != '' ) {
-        datedetail.innerHTML = cld[d].sYear +' 年 '+ cld[d].sMonth
-            + ' 月 '+cld[d].sDay +' 日<br />星期' + cld[d].week + '<br />'
+        datedetail.innerHTML = cld[d].sYear +' - '+ cld[d].sMonth
+            + ' - '+cld[d].sDay +' &nbsp星期' + cld[d].week + '<br />'
             + '<span>农历' + (cld[d].isLeap?'闰 ':' ')
             + cld[d].lMonth + ' 月 ' + cld[d].lDay + ' 日<br />'
             + cld[d].cYear + '年 ' + cld[d].cMonth
@@ -596,16 +609,16 @@ function mOvr(v) {
             if(sD>-1 && sD<cld.length){
                 if(!cld[sD].isToday)
                 {
-                    sObj1.style.backgroundColor='#ffffff';
-                    lObj1.style.backgroundColor='#ffffff';
+                    sObj1.style.backgroundPosition='';
+                    lObj1.style.backgroundPosition='';
                 }
             }
         }
         //只有当其为非今天时才可变色
         sD1=v-cld.firstWeek;
         if(!cld[sD1].isToday){
-            sObj.style.backgroundColor = '#33FFFF';
-            lObj.style.backgroundColor = '#33FFFF';
+            sObj.style.backgroundPosition = '162px 0px';
+            lObj.style.backgroundPosition = '162px 0px';
         }
         var jyt1 = jcr(cld[d].sgz3);
         festival.innerHTML=jyt1;
@@ -755,8 +768,9 @@ function initial() {
     jyt1 = jcr(cld[d].sgz3);
     var festival = document.getElementById("festival");
     var datedetail = document.getElementById("datedetail");
-    datedetail.innerHTML = cld[d].sYear +' 年 '+ cld[d].sMonth
-        + ' 月 '+cld[d].sDay +' 日<br />星期' + cld[d].week + '<br />'
+    datedetail.innerHTML = '<p style="padding-top: 10px">'+cld[d].sYear +'-'+ cld[d].sMonth
+        + '-'+cld[d].sDay +'<span style="padding-left: 10px">星期' + cld[d].week + '</p>'+
+        '<p style="color: red;font-size: 40px;font-weight: bold;font-family:Cursive;">'+cld[d].sDay+'</p>'
         + '<span>农历' + (cld[d].isLeap?'闰 ':' ')
         + cld[d].lMonth + ' 月 ' + cld[d].lDay + ' 日<br />'
         + cld[d].cYear + '年 ' + cld[d].cMonth
