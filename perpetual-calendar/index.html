@@ -12,12 +12,11 @@
 <div id="date">
     <p>
         <!--年份后退1-->
-        <!--<a href="javascript:;" onclick="pushBtm('YU')"  class="prev-next"><</a>-->
-        <button onclick="pushBtm('YU')"  class="prev-next"><</button>
+        <button onclick="pushBtm('YU')" class="prev-next"><</button>
         <!--选择年份-->
         <select onchange="changeCld()" id="sy"></select>
         <!--年份前进1-->
-        <button onclick="pushBtm('YD')"  class="prev-next">></button>
+        <button onclick="pushBtm('YD')" class="prev-next">></button>
         <!--年份后退1-->
         <button onclick="pushBtm('MU')"  class="prev-next"><</button>
         <!--选择月份-->
@@ -36,25 +35,15 @@
             <option>国庆</option>
         </select>
         <!--返回今天的按钮-->
-        <button onclick="returnNowDate()">返回今天</button>
-        北京时间：<span id="nowTime"></span>
+        <button class="return-now-date" onclick="returnNowDate()">返回今天</button>
+        <span id="now-time-title">北京时间：</span>
+        <span id="now-time"></span>
         <!--返回的农历的信息-->
         <span id="gz">&nbsp;</span>
     </p>
 </div>
 
 <div id="calendar">
-    <!--<table id="calendarhead">-->
-        <!--<tr>-->
-            <!--<td>日</td>-->
-            <!--<td>一</td>-->
-            <!--<td>二</td>-->
-            <!--<td>三</td>-->
-            <!--<td>四</td>-->
-            <!--<td>五</td>-->
-            <!--<td>六</td>-->
-        <!--</tr>-->
-    <!--</table>-->
     <table id="week">
         <thead>
         <tr>
