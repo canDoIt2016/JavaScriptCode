@@ -111,6 +111,38 @@ function cyclical2(num, num2) {
     if (num == 10) return(jcName10[num2]);
     if (num == 11) return(jcName11[num2]);
 }
+//表示2016假期
+var sHoliday=new Array(
+    "0101 元旦",//0
+    "0102*廿三",
+    "0103*廿四",
+    "0207 除夕",
+    "0208 春节",//4
+    "0209*初二",
+    "0210*初三",
+    "0211*初四",
+    "0212*初五",
+    "0213*初六",
+    "0404 清明",//10
+    "0402*廿五",
+    "0403*廿六",
+    "0430*廿四",
+    "0501 劳动节",//14
+    "0502*廿六",
+    "0609 端午节",//16
+    "0610*初六",
+    "0611*初七",
+    "0915 中秋节",//19
+    "0916*十六",
+    "0917*十七",
+    "1001 国庆",//22
+    "1002*初二",
+    "1003*初三",
+    "1004*初四",
+    "1005*初五",
+    "1006*初六",
+    "1007*初七"
+)
 //国历节日 *表示节假日
 var sFtv = new Array(
     "0101*元旦",
@@ -162,9 +194,9 @@ var sFtv = new Array(
     "0927 世界旅游日",
     "0928 孔子诞辰",
 
-    "1001*国庆节 国际音乐日",
-    "1004 世界动物日",
-    "1006 老人节",
+    "1001*国庆节",
+//    "1004 世界动物日",
+//    "1006 老人节",
     "1008 全国高血压日 世界视觉日",
     "1009 世界邮政日",
     "1015 国际盲人节",
@@ -207,9 +239,9 @@ var wFtv = new Array(
     "0530 全国助残日",
     "0630 国际父亲节",
     "0932 国际和平日",
-    "0940 国际聋人节",
-    "1013 国际减轻自然灾害日",
-    "1011 国际住房日"
+    "0940 国际聋人节"
+//    "1013 国际减轻自然灾害日",
+//    "1011 国际住房日"
 );
 
 //返回农历年一年的总天数
@@ -346,7 +378,7 @@ function calendar(y, m) {
     lM2 = (y - 1900) * 12 + m + 12;
     for (var i = 0; i < this.length; i++) {
         if (lD > lX) {
-            sDObj = new Date(y, m, i + 1);//公立年月日
+            sDObj = new Date(y, m, i+2);//公立年月日
             lDObj = new Lunar(sDObj);//农历年月日
             lY = lDObj.year;
             lM = lDObj.month;
@@ -358,12 +390,12 @@ function calendar(y, m) {
         }
         //依节气调整二月分的年柱, 以立春为界
         if (m == 1 && (i + 1) == term2) {
-            cY = cyclical(y - 1900 + 36);
+//            var cY = cyclical(y - 1900 + 36);
             lY2 = (y - 1900 + 36);
         }
         //依节气月柱, 以「节」为界
-        if ((i + 1) == this.firstNode) {
-            cM = cyclical((y - 1900) * 12 + m + 13);
+        if ((i + 1) == firstNode) {
+//            var cM = cyclical((y - 1900) * 12 + m + 13);
             lM2 = (y - 1900) * 12 + m + 13;
         }
         this[i] = new calElement(y, m + 1, i + 1, nStr1[(i + this.firstWeek) % 7],
@@ -378,14 +410,38 @@ function calendar(y, m) {
     }
     tmp1 = sTerm(y, m * 2) - 1;
     tmp2 = sTerm(y, m * 2 + 1) - 1;
-    this[tmp1].solarTerms = solarTerm[m * 2];
-    this[tmp2].solarTerms = solarTerm[m * 2 + 1];
-    if (m == 3) this[tmp1].color = '#ff5f07';
+    if(solarTerm[m * 2]=="清明"&&y==tY){
+        this[tmp1].solarTerms = solarTerm[m * 2]+'(休)';
+        this[tmp2].solarTerms = solarTerm[m * 2 + 1]+' ';
+    }
+    else{
+        this[tmp1].solarTerms = solarTerm[m * 2];
+        this[tmp2].solarTerms = solarTerm[m * 2 + 1];
+    }
+
+    if (m == 3) this[tmp1].color = '#FF0000';
+//    if(y==tY){
+    if(y==tY){
+        for (i in sHoliday)
+            if (sHoliday[i].match(/^(\d{2})(\d{2})([\s\*])(.+)$/)){
+                if (Number(RegExp.$1) == (m + 1)){
+                    if (RegExp.$3 == '*')
+                        this[Number(RegExp.$2) - 1].solarFestival += RegExp.$4 + '(休)';
+                }
+            }
+    }
+//    }else {
     for (i in sFtv)
         if (sFtv[i].match(/^(\d{2})(\d{2})([\s\*])(.+)$/))
             if (Number(RegExp.$1) == (m + 1)) {
-                this[Number(RegExp.$2) - 1].solarFestival += RegExp.$4 + ' ';
-                if (RegExp.$3 == '*') this[Number(RegExp.$2) - 1].color = '#ff5f07';
+                if (RegExp.$3 == '*' && y == tY) {
+                    //this[Number(RegExp.$2) - 1].color = '#ff5f07';
+                    this[Number(RegExp.$2) - 1].solarFestival += RegExp.$4 + '(休)';
+                }
+                else {
+                    //this[Number(RegExp.$2) - 1].color = '#ff5f07';
+                    this[Number(RegExp.$2) - 1].solarFestival += RegExp.$4 + ' ';
+                }
             }
     for (i in wFtv)
         if (wFtv[i].match(/^(\d{2})(\d)(\d)([\s\*])(.+)$/))
@@ -401,11 +457,16 @@ function calendar(y, m) {
             if (tmp1 >= 0 && tmp1 < n) {
                 tmp2 = lDPOS[tmp1] + Number(RegExp.$2) - 1;
                 if (tmp2 >= 0 && tmp2 < this.length) {
-                    this[tmp2].lunarFestival += RegExp.$4 + ' ';
-                    if (RegExp.$3 == '*') this[tmp2].color = '#ff5f07';
+                    if (RegExp.$3 != '*')
+                        this[tmp2].lunarFestival += RegExp.$4 + ' ';
+                    if (RegExp.$3 == '*' && y == tY) {
+//                        this[tmp2].color = '#ff5f07';
+                        this[tmp2].lunarFestival += RegExp.$4 + '(休)';
+                    }
                 }
             }
         }
+//    }
     if ((this.firstWeek + 12) % 7 == 5)
         this[12].solarFestival += '黑色星期五 ';
     //判断是否为今天
@@ -450,11 +511,11 @@ function drawCld(SY, SM) {
         lObj.style.background = '';
         //返回当月第一天是周几
         sD = i - cld.firstWeek;
+        //window.console.log(cld[sD].lDay);
         if (sD > -1 && sD < cld.length) {
             sObj.innerHTML = sD + 1;
             if (cld[sD].isToday) {
                 //设置今天的背景色
-                //window.console.log(sD);
 //                sObj.style.backgroundImage = "url(./image/cells.png)";
                 sObj.style.backgroundPosition = '81px 0px';
                 //sObj.style.color="#FFFFFF";
@@ -466,13 +527,12 @@ function drawCld(SY, SM) {
                     + (monthDays(cld[sD].lYear, cld[sD].lMonth) == 29 ? '小' : '大') + '</b>';
             else
                 lObj.innerHTML = cDay(cld[sD].lDay);
-
             s = cld[sD].lunarFestival;
             if (s.length > 0) {
                 //农历节日名称大于5个字截去
                 s1 = s;
                 if (s.length > 7) s = s.substr(0, 5) + '…';
-                s = s.fontcolor('#ff5f07');
+                s = s.fontcolor('#FF0000');
             }
             else {
                 s = cld[sD].solarFestival;
@@ -482,11 +542,11 @@ function drawCld(SY, SM) {
                     //保留原来节日名称
                     s1 = s;
                     if (s.length > size + 1) s = s.substr(0, size - 1) + '…';
-                    s = s.fontcolor('#0168ea');
+                    s = s.fontcolor('#FF0000');
                 }
                 else {
                     s = cld[sD].solarTerms;
-                    if (s.length > 0) s = s.fontcolor('#44d7cf');
+                    if (s.length > 0) s = s.fontcolor('#FF0000');
                 }
             }
             if (s.length > 0) {
@@ -512,7 +572,6 @@ function changeCld() {
     n = selectedLoc + cld.firstWeek;
     var sObj = document.getElementById('sd' + n);
     var lObj = document.getElementById('ld' + n);
-    window.console.log(n);
     //在换页时记录上一页的位置，并将上一页选择的位置作为当前页选择的位置
     if (cld[selectedLoc].isToday) {
         sObj.style.backgroundPosition = '81px 0px';
@@ -525,6 +584,45 @@ function changeCld() {
     mOvr(n);
 }
 
+//相应的节日跳转
+function FesSkip(num){
+    sHoliday[num].match(/^(\d{2})(\d{2})([\s\*])(.+)$/);
+    document.getElementById("sm").selectedIndex = Number(RegExp.$1)-1;
+    var m = Number(RegExp.$2)-1;
+    drawCld(tY, Number(RegExp.$1)-1);
+    var n = m + cld.firstWeek;
+    mOvr(n);
+}
+
+//选中了节日并跳到相应的月份
+function changeFes(){
+   var festival = document.getElementById("holiday-arrange").selectedIndex;
+    switch (festival){
+        case 1:
+            FesSkip(0);
+            break;
+        case 2:
+            FesSkip(8);
+            break;
+        case 3:
+            FesSkip(10);
+            break;
+        case 4:
+            FesSkip(14);
+            break;
+        case 5:
+            FesSkip(16);
+            break;
+        case 6:
+            FesSkip(19);
+            break;
+        case 7:
+            FesSkip(22);
+            break;
+        default :
+            break;
+    }
+}
 //进行月份年份的前进后退
 function pushBtm(K) {
     switch (K) {
@@ -591,7 +689,7 @@ function mOvr(v) {
     //获取的点击的具体的哪个空格
     var sObj = document.getElementById('sd' + v);
     var lObj = document.getElementById('ld' + v);
-    var d = sObj.innerHTML - 1;
+    var d = sObj.innerHTML-1;
     //记录下点击的位置
     selectedLoc = v - cld.firstWeek;
     var sD, sD1;
@@ -600,7 +698,7 @@ function mOvr(v) {
             + '月' + cld[d].sDay + '日'+'</p>'+'<p>星期'+ cld[d].week + '</p>' +
             '<p style="color: red;font-size: 40px;font-weight: bold;font-family:Cursive;">' + cld[d].sDay + '</p>'
             + '<span>农历' + (cld[d].isLeap ? '闰 ' : ' ')
-            + nStr3[cld[d].lMonth] + '月' + cDay(cld[d].lDay) + '<br />'
+            + nStr3[cld[d].lMonth-1] + '月' + cDay(cld[d].lDay) + '<br />'
             + cld[d].cYear + '年 ' + cld[d].cMonth
             + '月 ' + cld[d].cDay + '日</span>'+'<br />'+'['+Animals[(cld[d].sYear - 4) % 12]+'年'+']';
         //边框清空
@@ -633,39 +731,6 @@ function mOvr(v) {
     }
 }
 
-//获取鼠标坐标
-//function mEvn(e) {
-//    if (!show) return;
-//    if(window.event){
-//        x = event.x ;
-//        y = event.y ;
-//        if (document.body.scrollLeft){
-//            x += document.body.scrollLeft;
-//            y += document.body.scrollTop;
-//        }
-//        // changed by hmisty 2005/07/23
-//        dStyle.left = (x + offsetx-(width/2)) + "px";
-//        dStyle.top = (y + offsety) + "px";
-//    }
-//    else {
-//        dStyle.left = (e.pageX + offsetx-(width/2)) + "px";
-//        dStyle.top = (e.pageY + offsety) + "px";
-//    }
-//}
-
-//function changeTZ() {
-//    document.getElementById("city").innerHTML = document.getElementById("tz").value.substr(6);
-//    setCookie("TZ",document.getElementById("tz").selectedIndex);
-//}
-
-//function tick() {
-//    var today;
-//    today = new Date();
-//    document.getElementById("clock").innerHTML = today.getFullYear() + "年"
-//        + today.getMonth() + "月" + today.getDay() + "日" + today.getTime();
-//    window.setTimeout("tick()", 1000);
-//}
-
 function setCookie(name, value) {
     var today = new Date();
     var expires = new Date();
@@ -687,64 +752,6 @@ function getCookie(Name) {
     }
 }
 
-//function fillSelect() {
-//    syd = document.getElementById("sy");
-//    syd.innerHTML = "";
-//    for(i=1900;i<2050;i++)
-//    {
-//        ins = document.createElement("OPTION");
-//        ins.innerHTML = i;
-//        syd.appendChild(ins);
-//    }
-//    smd = document.getElementById("sm");
-//    smd.innerHTML = "";
-//    for(i=1;i<13;i++)
-//    {
-//        ins = document.createElement("OPTION");
-//        ins.innerHTML = i;
-//        smd.appendChild(ins);
-//    }
-//}
-
-//function fillCalendar() {
-//    var gNum;
-//    var tablex = document.createElement("table");
-//    tablex.setAttribute("id","week");
-//    for(i=0;i<6;i++) {
-//        var trx1 = document.createElement("tr");
-//        var trx2 = document.createElement("tr");
-//        trx1.setAttribute("class","tr1");
-//        trx2.setAttribute("class","tr2");
-//        for(j=0;j<7;j++) {
-//            gNum = i*7+j;
-//            var tdx = document.createElement("td");
-//            tdx.setAttribute("id","sd"+gNum);
-//            tdx.setAttribute("onMouseOver",'mOvr('+gNum+')');
-//            tdx.setAttribute("onMouseOut","mOut()");
-//            if(j == 0){
-//                tdx.setAttribute("class","aorange");
-//            }
-//            else if(j == 6){
-//                if(i%2==1) tdx.setAttribute("class","aorange");
-//                else tdx.setAttribute("class","agreen");
-//            }
-//            else{
-//                tdx.setAttribute("class","one");
-//            }
-//            trx1.appendChild(tdx);
-//
-//            tdx = document.createElement("td");
-//            tdx.setAttribute("id","ld"+gNum);
-//            tdx.setAttribute("onMouseOver",'mOvr('+gNum+')');
-//            tdx.setAttribute("onMouseOut","mOut()");
-//            trx2.appendChild(tdx);
-//        }
-//        tablex.appendChild(trx1);
-//        tablex.appendChild(trx2);
-//    }
-//    document.getElementById("calendar").appendChild(tablex);
-//}
-
 //界面初始化
 function initial() {
     dStyle = document.getElementById("detail").style;
@@ -764,9 +771,8 @@ function initial() {
     document.getElementById("sm").selectedIndex = tM;
     //显示北京时间
     showLocalTime();
-
     var cld = new calendar(tY, tM);
-    var d = tD - 1;
+    var d = tD-1;
     jyt1 = jcr(cld[d].sgz3);
     var festival = document.getElementById("festival");
     var datedetail = document.getElementById("datedetail");
@@ -774,7 +780,7 @@ function initial() {
         + '月' + cld[d].sDay + '日<span style="padding-left: 10px">'+'</p>'+'<p>星期'+ cld[d].week + '</p>' +
         '<p style="color: red;font-size: 40px;font-weight: bold;font-family:Cursive;">' + cld[d].sDay + '</p>'
         + '<span>农历' + (cld[d].isLeap ? '闰 ' : ' ')
-        + nStr3[cld[d].lMonth] + '月' + cDay(cld[d].lDay) + '<br />'
+        + nStr3[cld[d].lMonth-1] + '月' + cDay(cld[d].lDay) + '<br />'
         + cld[d].cYear + '年 ' + cld[d].cMonth
         + '月 ' + cld[d].cDay + '日</span>'+'<br />'+'['+Animals[(tY - 4) % 12]+'年'+']';
     festival.innerHTML = jyt1;
