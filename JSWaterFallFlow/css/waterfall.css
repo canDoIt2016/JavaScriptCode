@@ -1,0 +1,15 @@
+*{margin: 0;padding: 0;}
+#container{
+    background-color: red;
+    position: relative;
+}
+.boxer{
+    border: 1px solid #000000;
+    float: left;
+    border-radius: 3px;
+    box-shadow: 0 0 6px red;
+}
+.boxer image{
+    width: 126px;
+    height: auto;
+}
