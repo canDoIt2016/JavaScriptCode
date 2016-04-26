@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过Ajax返回后台的内容在搜索输入框列表中</title>
+    <style>
+        * {
+            font-family: "Microsoft Yahei", serif;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        #container {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #search-box {
+            display: inline-block;
+            width: 400px;
+            position: relative;
+        }
+
+        #hits {
+            position: absolute;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            border: 1px solid gray;
+            border-top: none;
+            width: 398px;
+        }
+
+        #hits > li {
+            padding: 5px 15px;
+        }
+
+        #hits > li:hover {
+            background: lightblue;
+            cursor: default;
+        }
+
+        #keyword {
+            border: 1px solid gray;
+            outline: none;
+            padding: 10px 15px;
+            margin: 0;
+            width: 368px;
+        }
+
+        #search-btn {
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1>搜索</h1>
+
+    <div>
+        <div id="search-box">
+            <input type="text" id="keyword"/>
+            <ul id="hits" style="display: none;">
+            </ul>
+        </div>
+        <button id="search-btn">搜索</button>
+    </div>
+</div>
+<script type="text/javascript">
+    document.getElementById("keyword").onblur= function (){
+        var keyword=this.value;
+        var xhr=new XMLHttpRequest();
+        var url="search.php?keyword="+keyword;
+        console.log(url);
+        xhr.open('GET',url,true);
+        xhr.onreadystatechange=function(){
+
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // alert(xhr.responseText);
+                handleResult(xhr.responseText);
+            }
+        };
+        xhr.send();
+    }
+    // 处理响应结果
+
+    function handleResult(ret) {
+        // ret = JSON.parse(ret);
+        // alert(ret);
+        var domHits = document.getElementById('hits');
+        if (ret.length) {
+            var lis = [];
+            for (var i = 0, len = ret.length; i < len; ++i) {
+                lis.push('<li>' + ret[i] + '</li>');
+            }
+            domHits.innerHTML = lis.join('');
+            domHits.style.display = 'block';
+        } else {
+            domHits.innerHTML = '';
+            domHits.style.display = 'none';
+        }
+    }
+
+    // 单击提示结果放入输入框
+    document.getElementById('hits').onclick = function (event) {
+        document.getElementById('keyword').value = event.target.innerHTML;
+        this.style.display = 'none';
+    }
+</script>
+</body>
+</html>
