@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload=function(){
+            setDefaultValue("message","请输入3~8个字");
+        }
+        function returnValue(theform){
+            alert(theform["phone-number"].value);
+        }
+        function judgeMessage(tag){
+            var getHint=document.getElementById("hint");
+            if(tag.value==''&&getHint.innerHTML==''){
+                setDefaultValue("message","请输入3~8个字");
+                message("请输入内容！",getHint);
+            }
+            else{
+                if(tag.value!=''){
+                    getHint.innerHTML="";
+                    var isRange = inputRange(3,8,tag,getHint);
+                    if(isRange){
+                        var btn = document.getElementById("btn");
+                        btn.disabled=false;
+                        console.log("您输入的是："+tag.value);
+                    }
+                }
+            }
+
+        }
+        function inputRange(min,max,object,getHint){
+            if(object.value.length<min){
+                message("输入的内容过短！",getHint);
+                return false;
+            }
+            if(object.value.length>max){
+                message("输入的内容过长！",getHint);
+                return false;
+            }
+            if(min<object.value.length&&object.value.length<max)
+            {
+                message("",getHint);
+                return true;
+            }
+        }
+        function message(content,getHint){
+            getHint.style="color:red;font-size:9px;"
+            getHint.innerHTML=content;
+        }
+        function setDefaultValue(id,message){
+            var defaultValue=document.getElementById(id);
+            defaultValue.value=message;
+            defaultValue.style="color:gray;";
+        }
+        function clearDefaultValue(object,message){
+            var value=object.value;
+            if(value==message){
+                object.value='';
+            }
+        }
+        function inspectZCode(object){
+            var reg=/\d{6}/g;
+           if(reg.test(object.value))
+           console.log(reg.test(object.value));
+        }
+    </script>
+</head>
+<body>
+<form action="">
+    <p>
+        Message：<input id="message" type="text" onblur="judgeMessage(this)" onfocus="clearDefaultValue(this,'请输入3~8个字')">
+        <span id="hint"></span>
+    </p>
+
+    <p>
+        Flydate:<input id="fly-date" type="text">
+    </p>
+
+    <p>Name:<input id="name" type="text"></p>
+
+    <p>
+        ZIPcode:<input id="zip-code"  type="text" onblur="inspectZCode(this)">
+        <span id="hint-ZCode"></span>
+    </p>
+
+    <p>Phonenumber:<input id="phone-number" type="text"></p>
+
+    <p>Email:<input id="email" type="text"></p>
+
+    <p><input id="btn" type="submit" value="提交订单" disabled onclick="returnValue(this.form)"></p>
+</form>
+
+
+</body>
+</html>
