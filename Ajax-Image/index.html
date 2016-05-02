@@ -12,23 +12,62 @@
                 image.onclick=function(){
                     var src = "images/"+this.id+"-detail.jpg";
                     document.getElementById("itemDetail").src=src;
+                    getDetails(this.id);
                 }
             }
         }
+        function createRequest(){
+            try{
+                var request=new XMLHttpRequest();
+            }catch(exception)
+            {
+                try{
+                    var request=new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch(exception){
+                    try{
+                        var request = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    catch (failed) {
+                        var request = null;
+                    }
+                }
+            }
+            return request;
+        }
+        function getDetails(itemName){
+            var request=createRequest();
+            if(request==null){
+                alert("请检查浏览器是否支持Ajax通信！");
+            }
+            var url="detailMessage.php?itemName="+itemName;
+            request.open("get",url,true);
+            request.onreadystatechange=displayDetails;
+            function displayDetails(){
+                if(request.readyState == 4&&request.status == 200){
+                    var detailIndex=document.getElementById("description");
+                    detailIndex.innerHTML=request.responseText;
+                }
+            }
+            request.send();
+        }
+
     </script>
 </head>
 <body>
-<div id="wrapper">
-    <img src="./images/logotypeLeft.png" alt="Rob's Rock 'n' Roll Memorabilia" width="394" height="91" id="logotypeLeft">
-    <img src="./images/logotypeRight.png" alt="Rob's Rock 'n' Roll Memorabilia" width="415" height="92" id="logotypeRight">
+<article id="wrapper">
+    <header>
+        <img src="./images/logotypeLeft.png" alt="Rob's Rock 'n' Roll Memorabilia" width="394" height="91" id="logotypeLeft">
+        <img src="./images/logotypeRight.png" alt="Rob's Rock 'n' Roll Memorabilia" width="415" height="92" id="logotypeRight">
 
-    <div id="introPane">
-        <p>Are you looking for the perfect gift for the rock fan in your life?
-            Maybe you want a guitar with some history behind it, or a conversation
-            piece for your next big shindig. Look no further! Here you'll find all
-            sorts of great memorabilia from the golden age of rock and roll.</p>
-        <p><strong>Click on an image to the left for more details.</strong></p>
-    </div>
+        <div id="introPane">
+            <p>Are you looking for the perfect gift for the rock fan in your life?
+                Maybe you want a guitar with some history behind it, or a conversation
+                piece for your next big shindig. Look no further! Here you'll find all
+                sorts of great memorabilia from the golden age of rock and roll.</p>
+            <p><strong>Click on an image to the left for more details.</strong></p>
+        </div>
+    </header>
     <div id="thumbnailPane">
         <img src="images/itemGuitar.jpg" width="301" height="105" alt="guitar"
              title="itemGuitar" id="itemGuitar" />
@@ -44,6 +83,6 @@
         <div id="description"></div>
     </div>
 
-</div>
+</article>
 
 </body>
