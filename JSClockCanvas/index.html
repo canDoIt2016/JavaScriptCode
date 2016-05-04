@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS时钟</title>
+
+    <style type="text/css">
+        #drawing{
+            width: 500px;
+            height: 500px;
+            /*background: red;*/
+            display: block;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="drawing"  width="500" height="500">画图</canvas>
+    <script>
+        var i=0;
+        var drawing=document.getElementById("drawing");
+        if(drawing.getContext){
+            var context=drawing.getContext("2d");
+            showClock();
+        }
+
+        function drawScale(x,y,rLong,rShort,num,angle,lineWidth)
+        {
+            context.lineWidth=lineWidth;
+            for(var i=0;i<num;i++){
+                context.beginPath();
+                context.moveTo(x,y);
+                context.arc(x,y,rLong,i*angle*Math.PI/180,(i+1)*angle*Math.PI/180,false);
+                context.closePath();
+                context.stroke();
+            }
+            context.fillStyle="#fff";
+            context.beginPath();
+            context.arc(x,y,rShort,0,2*Math.PI,false);
+            context.fill();
+        }
+
+        function showClock()
+        {
+            var x=200,y=200;
+            var date=new Date();
+            var hr=date.getHours();
+            var min=date.getMinutes();
+            var sec=date.getSeconds();
+            drawScale(x,y,130,123,60,6,2);
+            drawScale(x,y,130,115,12,30,2);
+            drawClockPointer(x,y,90,hr,min,sec,30,5,1);
+            drawClockPointer(x,y,100,min,min,sec,6,3,2);
+            drawClockPointer(x,y,110,sec,min,sec,6,1,0);
+            setTimeout("showClock()",1000);
+        }
+
+        function drawClockPointer(x,y,r,timeElement,fixM,fixS,angle,lineWidth,flag)
+        {
+            context.beginPath();
+            context.moveTo(x,y);
+            var fixValue=(flag%2)*fixM/2+Math.floor(flag/2)*fixS/10;
+            var pointerPosition=(-90+angle*timeElement+fixValue)*Math.PI/180;
+            context.arc(x,y,r,pointerPosition,pointerPosition,false);
+            context.lineWidth=lineWidth;
+            context.closePath();
+            context.stroke();
+        }
+    </script>
+</body>
+</html>
