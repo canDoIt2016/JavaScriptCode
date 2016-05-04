@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        window.onload=function(){
+            var imgIndex=document.getElementById("image");
+            imgIndex.addEventListener("mousemove", showDetail,false);
+            imgIndex.addEventListener("mouseout", removeDetail,false);
+        }
+        var showDetail=function(){
+            var details=document.getElementById("show-detail");
+            details.style.display="block";
+        }
+        var removeDetail=function(){
+            var details=document.getElementById("show-detail");
+            details.style.display="none";
+        }
+    </script>
+    <style type="text/css">
+        *{margin: 0px;padding: 0px;}
+        .image-id img{
+            width: 276px;
+            height: 167px;
+
+        }
+        #show-detail{
+            background: #8D8978;
+            width: 276px;
+            height: auto;
+            position: absolute;
+            bottom: 105px;
+            left: 0px;
+            display: none;
+        }
+        .image-id{
+            width: 276px;
+            height: 280px;
+            margin: 40px auto;
+            position: relative;
+            border: white solid 1px;
+        }
+        .image-id:hover{
+            border: #FF7E00 solid 1px;
+        }
+        #otherMessage{
+            position: relative;
+        }
+        #otherMessage .title{
+            display: inline-block;
+            position: absolute;
+            left: 10px;
+            top:  10px;
+            text-decoration: none;
+            font-family: "Microsoft Yahei", serif;
+            font-weight: bold;
+        }
+        #otherMessage .title-detail{
+            color: #506eaa;
+            font-family: 宋体;
+            font-size: 14px;
+            height: 20px;
+            color: #727272;
+            line-height: 20px;
+            display: block;
+            position: absolute;
+            left: 18px;
+            top:  36px;
+            text-decoration: none;
+        }
+        #otherMessage .price{
+            position: absolute;
+            top: 65px;
+            left: 12px;
+            color: #FF7E00;
+            line-height: 30px;
+            font-size: 26px;
+            font-family: arial;
+        }
+        .price span{
+            font-size: 16px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="image-id">
+    <!--<div class="img">-->
+        <a href="#"><img src="0.jpg" alt="" id="image">
+            <p id="show-detail">这里是向撒娇梵高睡房接收到了地方撒发顺丰</p>
+        </a>
+
+    <!--</div>-->
+    <div id="otherMessage">
+        <a href="#" class="title">【2店通用】玛雅咖啡地带</a>
+        <a href="#" class="title-detail">现金抵用1次，提供免费WIFI</a>
+        <p class="price"><span>￥</span>1100</p>
+    </div>
+</div>
+
+</body>
+</html>
