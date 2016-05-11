@@ -13,12 +13,12 @@ window.onload=function(){
 var showList=function(){
     this.style.border="#A10000 solid 1px";
     this.style.borderRadius="2px";
-    var list =this.getElementsByClassName("list");
+    var list =this.getElementsByClassName("second");
     list[0].style.display="block";
 }
 
 function removeList(){
     this.style.border="#F7F7F7 solid 1px";
-    var list =this.getElementsByClassName("list");
+    var list =this.getElementsByClassName("second");
     list[0].style.display="none";
 }
