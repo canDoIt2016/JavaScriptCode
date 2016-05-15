@@ -15,16 +15,14 @@ a{
     line-height: 33px;
     background: #F7F7F7;
     margin: 0px auto;
-    border-left: green solid 2px;
-    border-right: green solid 2px;
+    position: relative;
+    /*border: solid 1px green;*/
 }
 /*¶¥²¿»¶Ó­×óÇøÓò*/
 #top-header .top-header-left{
     width: 470px;
     height: 33px;
     float: left;
-    border-right: red solid 2px;
-    border-left: red solid 2px;
 }
 #top-header .welcome,.login,.resign,.my-order,.collection{
     float: left;
@@ -57,24 +55,88 @@ a{
 
 #top-header .top-header-right {
     float:right;
-    border-left: purple solid 2px;
-    border-right: purple solid 2px;
  }
 #top-header .top-header-right .my{
     /*display: block;*/
     float: left;
     list-style: none;
-    width: 69px;
-    height: 64px;
+    width: 70px;
+    height: auto;
+    text-align: center;
+    margin-left: 2px;
     border: #F7F7F7 solid 1px;
+    margin-top: 5px;
+    position:relative;
+    /*position: absolute;*/
+    /*padding-top: -7px;*/
 }
 #top-header .top-header-right .my a{
+    float: left;
     display: block;
-    height: 20px;
+    height: 18px;
     width: 69px;
+    margin-top: -7px;
     text-align: center;
+    background: url("../img/vanclsprite.png") no-repeat 57px 9px;
 }
 #top-header .top-header-right .my div.second{
+    float: left;
     display: none;
+    margin-top: 5px;
+    background: white;
+    /*position: relative;*/
 }
-
+#top-header .top-header-right .my div.second a{
+    float: left;
+    background: none;
+    padding-bottom: 7px;
+    /*position: relative;*/
+}
+#top-header .top-header-right .other{
+    float: left;
+}
+#top-header .top-header-right .other1,#top-header .top-header-right .other2{
+    float: left;
+    height: 30px;
+    width: 85px;
+    list-style: none;
+    text-align: center;
+    /*background: url("../img/vanclsprite.png") no-repeat 68px -20px;*/
+    /*border: red solid 1px;*/
+}
+#top-header .top-header-right .other1{
+    background: url("../img/vanclsprite.png") no-repeat 68px -20px;
+}
+#top-header .top-header-right .other2{
+    background: url("../img/customer_2.png") no-repeat 69px 8px;
+}
+#top-header .top-header-right .add{
+    width: 130px;
+    height: 33px;
+    float: left;
+    background: url("../img/vanclsprite.png") no-repeat -27px -20px;
+    margin-left: 90px;
+    /*padding-left: 90px;*/
+}
+/*a±êÇ©ÐüÍ£±äºì*/
+#top-header .top-header-right a:hover{
+    color: #A10000;
+}
+/*´ÙÏúÐÅÏ¢Í¼Æ¬*/
+/*#middle-header{*/
+    /*margin-top: 30px;*/
+/*}*/
+#middle-header .promotion{
+    display: block;
+    /*margin: 0px auto;*/
+    width: 1350px;
+    height: 52px;
+    position: absolute;
+    top: 34px;
+    left: 7px;
+    z-index: -1;
+    /*top: -10px;*/
+    /*margin-top: -30px;*/
+    /*padding-bottom: 30px;*/
+    /*border: solid 1px black;*/
+}
