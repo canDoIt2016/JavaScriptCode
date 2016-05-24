@@ -84,7 +84,7 @@ a{
     display: none;
     margin-top: 5px;
     background: white;
-    /*position: relative;*/
+    /*top: 10px;*/
 }
 #top-header .top-header-right .my div.second a{
     float: left;
@@ -140,3 +140,158 @@ a{
     /*padding-bottom: 30px;*/
     /*border: solid 1px black;*/
 }
+header #search{
+    width: 1350px;
+    height: 94px;
+    margin: 53px auto;
+    line-height: 94px;
+    position: relative;
+    /*border: green 1px solid;*/
+}
+header #search .search-logo{
+    float: left;
+    display: block;
+    height: 41px;
+    width: 159px;
+    margin-top: 26px;
+    margin-left: 100px;
+    background: url("../img/vanclsprite.png") no-repeat 0px -59px;
+    /*border: green solid 1px;*/
+}
+header #search #search-form{
+    position: absolute;
+    width: 650px;
+    height: 92px;
+    left: 700px;
+    /*border: green 1px solid;*/
+    z-index: 1;
+    /*line-height: 90px;*/
+}
+header #search #search-form ul{
+    float: left;
+    position: absolute;
+    cursor: pointer;
+    /*height: 15px;*/
+    top: 28px;
+}
+header #search #search-form ul li{
+    float: left;
+    list-style: none;
+    padding-left: 10px;
+    /*cursor: pointer;*/
+    /*border: green 1px solid;*/
+    color: #808080;
+}
+header #search #search-form ul li a{
+    color: #808080;
+}
+/*header #search #search-form input{*/
+    /*position: absolute;*/
+    /*top: 10px;*/
+    /*/!*left: 40px;*!/*/
+    /*z-index: -1;*/
+/*}*/
+header #search #search-form .search-input{
+    width: 392px;
+    height: 31px;
+    top: 24px;
+    position: absolute;
+    border: #C9CACA solid 1px;
+}
+header #search #search-form .search-submit{
+    width: 50px;
+    height: 30px;
+    background: url("../img/vanclsprite.png") no-repeat -99px -1px;
+    position: absolute;
+    top: 26px;
+    left: 395px;
+    border: #CACDCD solid 1px;
+    /*border: black solid 2px;*/
+}
+nav#nav-bar{
+    width: 1250px;
+    height: 50px;
+    /*float: left;*/
+    margin: -50px auto;
+    /*border: red solid 1px;*/
+}
+nav#nav-bar a.all{
+    display: block;
+    float: left;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 17px;
+    text-align: center;
+    font-family: "Microsoft Yahei";
+    background:  #B81C22;
+}
+nav#nav-bar ul{
+    float: left;
+    /*border: blue solid 1px;*/
+    /*width: 120px;*/
+    /*height: 52px;*/
+}
+nav#nav-bar li{
+    float: left;
+    list-style: none;
+    width: 120px;
+    height: 48px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    /*font-size: 16px;*/
+    /*font-family: "Microsoft Yahei";*/
+    /*color: #727171;*/
+    background: #EFEFEF;
+    /*border: orange solid 1px;*/
+}
+nav#nav-bar li a{
+    font-size: 16px;
+    font-family: "Microsoft Yahei";
+    color: #727171;
+}
+.navBarDetailImg{
+    height: 133px;
+    width:133px;
+    /*border: red solid 1px;*/
+    display: block;
+    float: left;
+    position: absolute;
+    left: 74px;
+    top: 10px;
+}
+.navBarDetailA{
+    font-size: 16px;
+    font-weight: bolder;
+    display: block;
+    position: absolute;
+    left: 204px;
+    /*float: left;*/
+    /*text-decoration: none;*/
+    color: #727171;
+}
+.navBarDetailP{
+    width: 152px;
+    line-height: 16px;
+    height: auto;
+    position: absolute;
+    left: 201px;
+    top: 51px;
+    text-align: left;
+    color: #999999;
+    font-size: 12px;
+    /*border: red solid 1px;*/
+}
+.navBarDetailPP{
+    position: absolute;
+    top: 93px;
+    left: 206px;
+    color: #b81c22;
+    font-size: 16px;
+    line-height: 30px;
+}
+/*nav#nav-bar li a:hover{*/
+    /*color: #C01C43;*/
+/*}*/
