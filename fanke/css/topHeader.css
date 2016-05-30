@@ -4,6 +4,9 @@
     font-size: 12px;
     font-family: 宋体;
 }
+body{
+    height: 1200px;
+}
 /*控制所有a标签*/
 a{
     text-decoration: none;
@@ -309,7 +312,7 @@ nav#nav-left .men-wear dd.dd-down{
 }
 div#carousel{
     float:left;
-    height: 518px;
+    height: 497px;
     width:728px;
     margin-top: 97px;
     margin-left: 18px;
@@ -346,11 +349,35 @@ div#nav-right{
     width: 210px;
     margin-top: 77px;
     margin-right: 80px;
-    border: #C9C9C9 solid 1px;
+    /*border: #C9C9C9 solid 1px;*/
+    /*border: red solid 1px;*/
 }
 div#nav-right div{
     height: 259px;
 }
 div#nav-right div.nav-right-bottom{
     border-top: solid 1px #C9C9C9;
+}
+#content{
+    float: left;
+    /*margin-top: 30px;*/
+    /*margin-left: 109px;*/
+}
+#content h2{
+    font-family: "Microsoft Yahei";
+    font-size: 17px;
+    color: #595757;
+    line-height: 40px;
+    width: 1110px;
+    /*display: block;*/
+    margin-top: 30px;
+    margin-left: 69px;
+    /*border: red solid 1px;*/
+}
+#content .content-recommended{
+    width: 1219px;
+    margin-left: 70px;
+    float: left;
+    height: 545px;
+    /*border: green solid 1px;*/
 }
