@@ -4,9 +4,9 @@
     font-size: 12px;
     font-family: 宋体;
 }
-body{
-    height: 1200px;
-}
+/*body{*/
+    /*height: 3200px;*/
+/*}*/
 /*控制所有a标签*/
 a{
     text-decoration: none;
@@ -380,4 +380,140 @@ div#nav-right div.nav-right-bottom{
     float: left;
     height: 545px;
     /*border: green solid 1px;*/
+}
+footer{
+    /*border: red solid 1px;*/
+    /*font-family: "Microsoft Yahei", serif;*/
+    float: left;
+    /*margin-left: 70px;*/
+    width: 1185px;
+    height: 190px;
+    /*margin: 0px auto;*/
+
+}
+footer ul.fanke-footer{
+    list-style: none;
+    height: 190px;
+    width: 1182px;
+    /*line-height: 190px;*/
+    margin-left: 70px;
+    margin-top: 38px;
+    border: #E0E0E1 solid 1px;
+}
+footer ul.fanke-footer li{
+    margin-top: 31px;
+    float: left;
+    height: 138px;
+    width: 195px;
+    border-left: #E0E0E1 solid 1px;
+    text-align: center;
+}
+footer ul.fanke-footer li h1{
+    font-size: 13px;
+    font-weight: 400;
+    height: 36px;
+    font-family: "Microsoft Yahei", serif;
+}
+footer ul.fanke-footer li p{
+    font-size: 12px;
+    height: 23px;
+    /*font-family: "Microsoft Yahei", serif;*/
+}
+footer ul.fanke-footer li p a{
+    color: #595757;
+    font-family: "Microsoft Yahei", serif;
+}
+footer ul.fanke-footer li p a:hover{
+    color: #A10000;
+}
+footer ul.footer-statement{
+    height: 52px;
+    width: 1182px;
+    margin-left: 60px;
+    /*border: solid green 1px;*/
+}
+footer ul.footer-statement li{
+    float: left;
+    height: 52px;
+    width: 293px;
+    list-style: none;
+    /*border: red solid 1px;*/
+}
+footer ul.footer-statement li.footer-statement-1{
+    background: url("../img/vanclsprite.png") no-repeat 65px -110px;
+}
+footer ul.footer-statement li.footer-statement-2{
+    background: url("../img/vanclsprite.png") no-repeat 65px -150px;
+}
+footer ul.footer-statement li.footer-statement-3{
+    background: url("../img/vanclsprite.png") no-repeat 65px -190px;
+}
+footer ul.footer-statement li.footer-statement-4{
+    background: url("../img/vanclsprite.png") no-repeat 65px -230px;
+}
+/*footer li .footer-content{*/
+    /*margin-top: 31px;*/
+/*}*/
+footer .footer-bottom,footer .footer-bottom p{
+    color: #3e3a39;
+    padding-top: 5px;
+    font-family: "Microsoft YaHei";
+}
+footer .footer-bottom{
+    width: 1355px;
+    height: 34px;
+    text-align: center;
+    border-top: solid 1px #3E3A39;
+    float: left;
+    /*color: #3e3a39;*/
+    /*padding-top: 5px;*/
+    /*font-family: "Microsoft YaHei";*/
+}
+footer .sub-footer{
+    float: left;
+    margin-left: 300px;
+    margin-top: 12px;
+    margin-bottom: 26px;
+    /*border: red solid 1px;*/
+}
+footer .sub-footer li{
+    float: left;
+    list-style: none;
+    margin-left: 21px;
+}
+footer .sub-footer-1{
+    height: 42px;
+    width: 113px;
+    background: url("../img/spritesbgtop.png") no-repeat 0px -581px;
+    /*border: solid 1px pink;*/
+}
+footer .sub-footer-2{
+    height: 45px;
+    width: 156px;
+    background: url("../img/spritesbgtop.png") no-repeat 0px -629px;
+    /*border: solid 1px pink;*/
+}
+footer .sub-footer-3{
+    height: 42px;
+    width: 96px;
+    background: url("../img/spritesbgtop.png") no-repeat 0px -674px;
+    /*border: solid 1px pink;*/
+}
+footer .sub-footer-4{
+    height: 42px;
+    width: 101px;
+    background: url("../img/spritesbgtop.png") no-repeat -97px -674px;
+    /*border: solid 1px pink;*/
+}
+footer .sub-footer-5{
+    height: 42px;
+    width: 42px;
+    background: url("../img/spritesbgtop.png") no-repeat -200px -674px;
+    /*border: solid 1px pink;*/
+}
+footer .sub-footer-6 img{
+    height: 39px;
+    width: 120px;
+    /*background: url("../img/kexin_brand_for_others.png") no-repeat 0px 0px;*/
+    /*border: solid 1px pink;*/
 }
