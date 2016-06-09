@@ -77,18 +77,34 @@ a{
     width: 69px;
     margin-top: -7px;
     text-align: center;
+    /*background: url("../img/vanclsprite.png") no-repeat 57px 9px;*/
+}
+div.second{
+    float: left;
+    /*top: 15px;*/
+    position: absolute;
+    display: none;
+    /*margin-top: 5px;*/
+    padding-top: 15px;
+    background: white;
+    border:#A10000 solid 1px;
+    /*border-bottom: #A10000 solid 1px;*/
+    /*border-left: #A10000 solid 1px;*/
+    /*border-right: #A10000 solid 1px;*/
+    z-index: 3;
+    border-radius: 2px;
+}
+.first{
+    position: absolute;
+    z-index: 4;
     background: url("../img/vanclsprite.png") no-repeat 57px 9px;
 }
-#top-header .top-header-right .my div.second{
-    float: left;
-    display: none;
-    margin-top: 5px;
-    background: white;
-}
-#top-header .top-header-right .my div.second a{
+div.second a{
     float: left;
     background: none;
     padding-bottom: 7px;
+    display: block;
+    /*border: darkblue 1px solid;*/
 }
 #top-header .top-header-right .other{
     float: left;
@@ -144,24 +160,32 @@ header #search .search-logo{
 }
 header #search #search-form{
     position: absolute;
-    width: 650px;
+    width: 1084px;
     height: 92px;
+    /*margin-left: 454px;*/
     left: 700px;
-    z-index: 1;
+    /*z-index: 1;*/
 }
-header #search #search-form ul{
+header #search ul{
     float: left;
     position: absolute;
     cursor: pointer;
-    top: 28px;
+    top: 68px;
+    left: 710px;
+    /*height: 27px;*/
+    /*width: 327px;*/
+    /*border: solid 1px slategrey;*/
 }
-header #search #search-form ul li{
+header #search ul li{
     float: left;
     list-style: none;
     padding-left: 10px;
+    line-height: 27px;
+    /*border: red 1px solid;*/
     color: #808080;
+
 }
-header #search #search-form ul li a{
+header #search ul li a{
     color: #808080;
 }
 
@@ -169,8 +193,9 @@ header #search #search-form .search-input{
     width: 392px;
     height: 31px;
     top: 24px;
-    position: absolute;
+    searchposition: absolute;
     border: #C9CACA solid 1px;
+    /*z-index: 2;*/
 }
 header #search #search-form .search-submit{
     width: 50px;
@@ -179,7 +204,7 @@ header #search #search-form .search-submit{
     position: absolute;
     top: 26px;
     left: 395px;
-    border: #CACDCD solid 1px;
+    /*border: #CACDCD solid 1px;*/
 }
 nav#nav-bar{
     width: 1250px;

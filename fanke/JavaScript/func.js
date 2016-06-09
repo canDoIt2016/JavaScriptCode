@@ -174,10 +174,24 @@ var navBarFunRemove=function(){
     }
 }
 var showList=function(){
-    this.style.border="#A10000 solid 1px";
+    //this.style.borderTop="#A10000 solid 1px";
+    //this.style.borderLeft="#A10000 solid 1px";
+    //this.style.borderRight="#A10000 solid 1px";
     this.style.borderRadius="2px";
     var list =this.getElementsByClassName("second");
+    //console.log(list);
     list[0].style.display="block";
+    //var value=this.getAttribute("value");
+    //alert(value);
+    //var div = document.createElement("div");
+    //div.id="second";
+    //switch (value)
+    //{
+    //    case"my":
+    //        div.innerHTML="<a href='#'>▪我的订单</a><a href='#'>▪我的收藏</a>";
+    //    case"":
+    //        div.innerHTML="<a href='#'>▪购物指南</a>"
+    //}
 }
 
 function removeList(){
